@@ -7,5 +7,5 @@ import vn.huynhduc.EShop.Enity.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
-    public Role findByName(String name);
+    public Role findByName(String role);
 }

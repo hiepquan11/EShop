@@ -7,6 +7,5 @@ import vn.huynhduc.EShop.Enity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
 
-    public User findByFullname(String fullnane);
-    public User findUsersByEmail(String email);
+    public User findByUsername(String username);
 }

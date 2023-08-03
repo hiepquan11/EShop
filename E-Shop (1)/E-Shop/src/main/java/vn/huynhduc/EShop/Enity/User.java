@@ -18,20 +18,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name = "username", length = 50)
+    private String username;
     @Column(name = "fullname", length = 50)
     private String fullname;
     @Column(name = "email", length = 150)
     private String email;
-    @Column(name = "phone_number",length = 20)
+    @Column(name = "phone_number", length = 20)
     private String phone_number;
     @Column(name = "address", length = 200)
     private String address;
     @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> role_id;
 
@@ -39,7 +40,6 @@ public class User {
     private LocalDateTime createc_at;
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
-
     @Column(name = "enabled")
     private int enabled;
 
@@ -47,6 +47,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", fullname='" + fullname + '\'' +
                 ", email='" + email + '\'' +
                 ", phone_number='" + phone_number + '\'' +
@@ -58,4 +59,5 @@ public class User {
                 ", enabled=" + enabled +
                 '}';
     }
+
 }

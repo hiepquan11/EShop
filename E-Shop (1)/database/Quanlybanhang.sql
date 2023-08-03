@@ -1,22 +1,21 @@
 create database quanlibanhang;
-CREATE TABLE `Role` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(20)
+CREATE TABLE `User`(
+	id int auto_increment primary key,
+	username varchar(50) not null UNIQUE,
+    password varchar(100) not null,
+    `fullname` varchar(50),
+	 `email` varchar(150),
+	  `phone_number` varchar(20),
+	  `address` varchar(200),
+	  `role_id` int,
+	  `created_at` datetime,
+	  `updated_at` datetime,
+    enabled TINYINT
 );
-
-CREATE TABLE `User` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `fullname` varchar(50),
-  `email` varchar(150),
-  `phone_number` varchar(20),
-  `address` varchar(200),
-  `password` varchar(100),
-  `role_id` int,
-  `created_at` datetime,
-  `updated_at` datetime,
-  `enabled` BIT DEFAULT 1
+create table `Role`(
+	id int Primary key auto_increment,
+    `role` varchar(50)
 );
-
 CREATE TABLE `Tokens` (
   `user_id` int,
   `token` varchar(32),
@@ -99,8 +98,14 @@ CREATE TABLE `Payment` (
   `payment_method` varchar(50),
   `payment_date` datetime
 );
+CREATE TABLE `users_roles`(
+	user_id int,
+    role_id int,
+    FOREIGN KEY (`user_id`) REFERENCES `User`(`id`),
+    FOREIGN KEY (`role_id`) REFERENCES `Role`(`id`)
+);
 
-ALTER TABLE `User` ADD FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`);
+-- ALTER TABLE `User` ADD FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`);
 
 ALTER TABLE `Product` ADD FOREIGN KEY (`category_id`) REFERENCES `Category` (`id`);
 

@@ -5,5 +5,5 @@ import vn.huynhduc.EShop.Enity.User;
 
 public interface UserService extends UserDetailsService {
 
-    public User findUserByEmail(String email);
+    public User findUserByUsername(String username);
 }
